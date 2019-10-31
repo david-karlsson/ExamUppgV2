@@ -25,6 +25,23 @@ namespace DataAccess
                     .FirstOrDefault();
         }
 
+
+
+        public Book GetBookOnLoan(bool booknr)
+        {
+
+
+            using var context = new LibraryContext();
+            return (from b in context.Book
+                    where b.OnLoan == booknr
+                    select b)
+                    .Include(b => b.BookOnLoan)
+                    .FirstOrDefault();
+        }
+
+
+
+
         public Book BookOnLoan(long booknr)
         {
             using var context = new LibraryContext();
@@ -98,7 +115,8 @@ namespace DataAccess
 
                 }
 
-            
+
+                
 
 
         }

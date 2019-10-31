@@ -49,7 +49,10 @@ namespace ExamUppg
             if (newBook.BookOnLoan.Count > 0)
                 return RemoveBookErrorCodes.BookIsOnLoan;
 
-            bookManager.RemoveBook(newBook.BookID);
+            if (newBook.Condition < 2)
+                return RemoveBookErrorCodes.PoorCondition;
+                bookManager.RemoveBook(newBook.BookID);                
+
 
             return RemoveBookErrorCodes.OK;
         }
@@ -58,7 +61,7 @@ namespace ExamUppg
         public MoveBookErrorCodes MoveBook (long bookISBN, long bookOnLoan)
         {
             var newBook = bookManager.GetBookByNumber(bookISBN);
-            var newBookLoan = bookManager.BookOnLoan(bookOnLoan);
+            var newBookLoan = bookManager.OnLoan(bookOnLoan);
 
             if (bookISBN == newBookLoan.ISBN)
                 return MoveBookErrorCodes.BookIsOnLoan;
@@ -68,6 +71,9 @@ namespace ExamUppg
 
 
         }
+
+
+
 
 
     }

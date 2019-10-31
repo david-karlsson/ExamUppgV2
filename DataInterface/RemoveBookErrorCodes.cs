@@ -7,7 +7,8 @@ namespace DataInterface
     public enum RemoveBookErrorCodes
     {
         OK,
-        BookIsOnLoan
+        BookIsOnLoan,
+        PoorCondition
 
     }
 }

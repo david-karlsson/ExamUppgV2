@@ -16,13 +16,12 @@ namespace DataInterface
 
         Book GetBookByNumber(long ISBN);
 
+        Book GetBookOnLoan (bool OnLoan);
+
         public void AddBook(long ISBN);
 
         public void RemoveBook(long ISBN);
         public void MoveBook(long ISBN, int shelfNr);
-
-
-
     }
 
 
