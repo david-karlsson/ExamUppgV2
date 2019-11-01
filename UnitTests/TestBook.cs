@@ -129,7 +129,7 @@ namespace Unittests
         }
 
 
-        public void DiscardBook()
+        public void RemoveDiscardBook()
         {
             var bookManagerMock = new Mock<IBookManager>();
             var shelfManagerMock = new Mock<IShelfManager>();
@@ -155,6 +155,20 @@ namespace Unittests
         }
 
 
+        public void ShowDiscardBookList()
+        {
+            var bookManagerMock = new Mock<IBookManager>();
+            var shelfManagerMock = new Mock<IShelfManager>();
+
+            bookManagerMock.Setup(m =>
+               m.GetBookDiscardList(It.IsAny<bool>()))
+                .Returns(new BookDiscardList
+                {
+
+                    Book = new List<BookDiscardList>()
+
+                });
+        }
 
 
     }

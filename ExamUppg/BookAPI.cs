@@ -73,7 +73,7 @@ namespace ExamUppg
         }
 
 
-        public DiscardBookListStatus RemoveBook(bool bookDiscardListNr)
+        public DiscardBookListStatus RemoveBookList(bool bookDiscardListNr)
         {
             var bookDiscard = bookManager.GetBookDiscardList(bookDiscardListNr);
 
