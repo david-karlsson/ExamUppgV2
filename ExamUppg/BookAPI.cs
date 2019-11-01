@@ -84,9 +84,8 @@ namespace ExamUppg
 
             if (bookDiscard.ListDone == true)
                 return DiscardBookListStatus.ListIsDone;
-            
-            else
-                return DiscardBookListStatus.ListIsNotSet;
+                bookManager.RemoveBook(bookDiscard.ISBN);
+
 
 
 

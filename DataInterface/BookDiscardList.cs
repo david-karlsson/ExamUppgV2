@@ -12,6 +12,7 @@ namespace DataInterface
 {
     public class BookDiscardList
     {
+        public List<BookDiscardList> BookDiscardList;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -31,6 +32,7 @@ namespace DataInterface
         public int ShelfID { get; set; }
     
         public Shelf Shelf { get; set; }
+        public string Title { get; set; }
 
         public int Booknr { get; set; }
 
@@ -39,7 +41,8 @@ namespace DataInterface
         
 
         public ICollection<BookOnLoan> BookOnLoan { get; set; }
-
+        public bool OnLoan { get; set; }
+        public int AisleNr { get; set; }
     }
 
 }

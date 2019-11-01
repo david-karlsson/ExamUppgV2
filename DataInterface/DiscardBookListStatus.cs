@@ -7,7 +7,6 @@ namespace DataInterface
     public enum DiscardBookListStatus
     {
         ListIsDone,
-        ListIsNotDone,
-        ListIsNotSet
+        ListIsNotDone
     }
 }

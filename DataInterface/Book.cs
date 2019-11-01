@@ -42,6 +42,8 @@ namespace DataInterface
         public bool OnLoan { get; set; }
         public int BookDiscardListNr { get; set; }
         public bool ListDone { get; set; }
+        public int AisleNr { get; set; }
+        public List<BookDiscardList> BookDiscardList { get; set; }
     }
 
 }

@@ -129,47 +129,5 @@ namespace Unittests
         }
 
 
-        public void RemoveDiscardBook()
-        {
-            var bookManagerMock = new Mock<IBookManager>();
-            var shelfManagerMock = new Mock<IShelfManager>();
-
-
-            bookManagerMock.Setup(m =>
-               m.GetBookByNumber(It.IsAny<long>()))
-                .Returns(new Book
-                {
-                    BookDiscardListNr = 1,
-
-                    BookDiscard = new List<BookDiscard>()
-
-                });
-
-
-
-            var bookAPI = new BookAPI(bookManagerMock.Object, shelfManagerMock.Object);
-            var successfull = bookAPI.RemoveBook(1);
-            Assert.AreEqual(RemoveBookErrorCodes.PoorCondition, successfull);
-            bookManagerMock.Verify(m =>
-                m.RemoveBook(It.IsAny<long>()), Times.Once);
-        }
-
-
-        public void ShowDiscardBookList()
-        {
-            var bookManagerMock = new Mock<IBookManager>();
-            var shelfManagerMock = new Mock<IShelfManager>();
-
-            bookManagerMock.Setup(m =>
-               m.GetBookDiscardList(It.IsAny<bool>()))
-                .Returns(new BookDiscardList
-                {
-
-                    Book = new List<BookDiscardList>()
-
-                });
-        }
-
-
     }
 }
