@@ -20,7 +20,10 @@ namespace DataInterface
 
         Book GetBookOnLoan (bool OnLoan);
 
-        Book GetBookDiscard(long ISBN);
+        Book GetBookDiscard(bool OnLoan);
+
+        Book GetBookDiscardList(bool ListDone);
+
 
         public void AddBook(long ISBN);
 

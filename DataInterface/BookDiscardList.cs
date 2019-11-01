@@ -10,7 +10,7 @@ using Moq;
 
 namespace DataInterface
 {
-    public class BookDiscard
+    public class BookDiscardList
     {
 
         [Key]
@@ -19,6 +19,8 @@ namespace DataInterface
         public int BookDiscardListID { get; set; }
 
         public int BookDiscardListNr { get; set; }
+
+        public int ListDone { get; set; }
         public long ISBN { get; set; }
 
         public int Condition { get;set; }

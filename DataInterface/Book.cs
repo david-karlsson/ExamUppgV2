@@ -41,6 +41,7 @@ namespace DataInterface
         public ICollection<BookOnLoan> BookOnLoan { get; set; }
         public bool OnLoan { get; set; }
         public int BookDiscardListNr { get; set; }
+        public bool ListDone { get; set; }
     }
 
 }

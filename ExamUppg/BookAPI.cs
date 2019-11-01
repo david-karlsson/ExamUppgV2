@@ -58,10 +58,10 @@ namespace ExamUppg
         }
 
 
-        public MoveBookErrorCodes MoveBook (long bookISBN, long bookOnLoan)
+        public MoveBookErrorCodes MoveBook (long bookISBN, bool bookOnLoan)
         {
             var newBook = bookManager.GetBookByNumber(bookISBN);
-            var newBookLoan = bookManager.OnLoan(bookOnLoan);
+            var newBookLoan = bookManager.GetBookOnLoan(bookOnLoan);
 
             if (bookISBN == newBookLoan.ISBN)
                 return MoveBookErrorCodes.BookIsOnLoan;
@@ -73,7 +73,24 @@ namespace ExamUppg
         }
 
 
+        public DiscardBookListStatus RemoveBook(bool bookDiscardListNr)
+        {
+            var bookDiscard = bookManager.GetBookDiscardList(bookDiscardListNr);
 
+
+            if (bookDiscard.ListDone == false )
+                return DiscardBookListStatus.ListIsNotDone;
+
+
+            if (bookDiscard.ListDone == true)
+                return DiscardBookListStatus.ListIsDone;
+            
+            else
+                return DiscardBookListStatus.ListIsNotSet;
+
+
+
+        }
 
 
     }
