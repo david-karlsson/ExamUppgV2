@@ -34,7 +34,6 @@ namespace DataAccess
 
             var aisle = new Aisle();
                 aisle.AisleNr = aisleNr;
-                aisle.AisleNr++;
                 LibraryContext.Aisle.Add(aisle);                      
                 LibraryContext.SaveChanges();
 

@@ -14,9 +14,13 @@ namespace DataInterface
     public interface IBookManager
     {
 
+
+
         Book GetBookByNumber(long ISBN);
 
         Book GetBookOnLoan (bool OnLoan);
+
+        Book GetBookDiscard(long ISBN);
 
         public void AddBook(long ISBN);
 

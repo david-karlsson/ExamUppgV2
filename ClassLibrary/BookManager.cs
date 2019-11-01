@@ -40,14 +40,29 @@ namespace DataAccess
         }
 
 
+        public Book GetBookDiscard(bool booknr)
+        {
+
+
+            using var context = new LibraryContext();
+            return (from b in context.Book
+                    where b.OnLoan == booknr
+                    select b)
+                    .Include(b => b.BookDiscard)
+                        .AlsoInclude(b => b.BookOnLoan)
+                    .ToList();
+        }
+
+
+
 
 
         public Book BookOnLoan(long booknr)
         {
             using var context = new LibraryContext();
-            return (from t in context.Book
-                    where t.ISBN == booknr
-                    select t)
+            return (from b in context.Book
+                    where b.ISBN == booknr
+                    select b)
                    
                     .FirstOrDefault();
 

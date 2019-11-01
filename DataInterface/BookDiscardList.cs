@@ -10,19 +10,18 @@ using Moq;
 
 namespace DataInterface
 {
-    public class Book
+    public class BookDiscard
     {
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int BookID { get; set; }
+        public int BookDiscardListID { get; set; }
 
-        public string Title { get; set; }
-
-        public int Price { get; set; }
-
+        public int BookDiscardListNr { get; set; }
         public long ISBN { get; set; }
+
+        public int Condition { get;set; }
 
         public int ShelfNr { get; set; }
 
@@ -31,16 +30,14 @@ namespace DataInterface
     
         public Shelf Shelf { get; set; }
 
-        public int CustomerID { get; set; }
-        public Customer Customer { get; set; }
+        public int Booknr { get; set; }
 
-        public BookDiscard BookDiscard { get; set; }
-        public int BookDiscardID { get; set; }
+        public Book Book { get; set; }
+        public int BookID { get; set; }
+        
 
-        public int Condition { get; set; }
         public ICollection<BookOnLoan> BookOnLoan { get; set; }
-        public bool OnLoan { get; set; }
-        public int BookDiscardListNr { get; set; }
+
     }
 
 }

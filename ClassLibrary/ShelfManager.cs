@@ -30,7 +30,6 @@ namespace DataAccess
             { 
 
             var shelf = new Shelf();
-                shelf.ShelfNr++;
                 LibraryContext.Shelf.Add(shelf);
          
                 LibraryContext.SaveChanges();
@@ -44,16 +43,13 @@ namespace DataAccess
 
         public void RemoveShelf(int shelfNr)
         {
-            using (var LibraryContext = new LibraryContext())
-            {
+            using var LibraryContext = new LibraryContext();
+            var shelf = (from a in LibraryContext.Shelf
+                         where a.ShelfNr == shelfNr
+                         select a).FirstOrDefault();
+            LibraryContext.Shelf.Remove(shelf);
 
-                var shelf = new Shelf();
-                shelf.AisleNr--;            
-                LibraryContext.Shelf.Remove(shelf);
-
-                LibraryContext.SaveChanges();
-
-            }
+            LibraryContext.SaveChanges();
 
 
         }
