@@ -8,16 +8,20 @@ namespace ExamUppg
     public class CustomerAPI
     {
         private ICustomerManager customerManager;
+        private IBookManager bookManager;
 
         public CustomerAPI(ICustomerManager customerManager)
         {
 
             this.customerManager = customerManager;
 
+        }
+        public CustomerAPI(IBookManager bookManager)
+        {
+
+            this.bookManager = bookManager;
 
         }
-
-
 
 
         public AddCustomerErrorCodes AddCustomer(string dateOfBirth, int customerNumber) {
@@ -73,16 +77,24 @@ namespace ExamUppg
             return RemoveCustomerErrorCodes.OK;
         }
 
-        public BookAmountOnLoan AmountStatus(int customerNr, int customerLoans)
+        public BookLoanStatus AmountStatus(int customerNr, int customerLoans, bool bookOnLoan )
         {
             var newCustomer = customerManager.GetCustomerByNumber(customerNr);
             var newLoans = customerManager.GetBooksLoanedByCustomer(customerLoans);
+            var BookLoan = bookManager.GetBookOnLoan(bookOnLoan);
+
 
             if (newLoans.BookOnLoan.Count > 5)
-                return BookAmountOnLoan.TooMany;
+                return BookLoanStatus.TooMany;
+
+            if (newCustomer.Book == newLoans.Book)
+                return BookLoanStatus.ExtendPeriod;
+
+            if (BookLoan.OnLoan == true)
+                return BookLoanStatus.BookIsOnLoan;
 
             else
-                return BookAmountOnLoan.OK;
+                return BookLoanStatus.OK;
 
 
         }

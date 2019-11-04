@@ -4,10 +4,13 @@ using System.Text;
 
 namespace DataInterface
 {
-    public enum BookAmountOnLoan
+    public enum BookLoanStatus
     {
         OK,
-        TooMany
+        TooMany,
+        ExtendPeriod,
+        BookIsOnLoan
+
 
     }
 }
