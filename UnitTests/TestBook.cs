@@ -93,7 +93,7 @@ namespace Unittests
 
 
             var bookAPI = new BookAPI(bookManagerMock.Object, shelfManagerMock.Object);
-            var result = bookAPI.MoveBook(1, 1);
+            var result = bookAPI.MoveBook(1, true);
             Assert.AreEqual(MoveBookErrorCodes.OK, result);
             bookManagerMock.Verify(m =>
                 m.MoveBook(2, 2), Times.Once());

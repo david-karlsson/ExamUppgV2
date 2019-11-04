@@ -73,7 +73,19 @@ namespace ExamUppg
             return RemoveCustomerErrorCodes.OK;
         }
 
+        public BookAmountOnLoan AmountStatus(int customerNr, int customerLoans)
+        {
+            var newCustomer = customerManager.GetCustomerByNumber(customerNr);
+            var newLoans = customerManager.GetBooksLoanedByCustomer(customerLoans);
 
+            if (newLoans.BookOnLoan.Count > 5)
+                return BookAmountOnLoan.TooMany;
+
+            else
+                return BookAmountOnLoan.OK;
+
+
+        }
 
     }
 

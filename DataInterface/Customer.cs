@@ -22,9 +22,11 @@ namespace DataInterface
 
         public string DateOfBirth { get; set; }
 
+        public int AmountOfBooksLoaned { get; set; }
+
         public int Debts { get; set; }
 
-
+        public BookOnLoan BookOnLoan { get; set; }
         public ICollection<Book> Book { get; set; }
 
     }

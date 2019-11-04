@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+
 using DataInterface;
 
 namespace ExamUppg
@@ -11,6 +12,8 @@ namespace ExamUppg
 
         private IBookManager bookManager;
         private IShelfManager shelfManager;
+        private ICustomerManager customerManager;
+
 
         public BookAPI(IBookManager bookManager, IShelfManager shelfManager)
         {
@@ -19,10 +22,10 @@ namespace ExamUppg
 
         }
 
-        public BookAPI(IBookManager bookManager)
+        public BookAPI(ICustomerManager customerManager)
             {
 
-            this.bookManager = bookManager;
+            this.customerManager = customerManager;
 
 
         }
@@ -71,6 +74,9 @@ namespace ExamUppg
 
 
         }
+
+
+     
 
 
         public DiscardBookListStatus RemoveBookList(bool bookDiscardListNr)

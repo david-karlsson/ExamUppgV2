@@ -26,7 +26,23 @@ namespace DataAccess
                            // .Include(c => c.Shelf)
                             .FirstOrDefault();
                 }
-        
+
+
+
+        public Customer GetBooksLoanedByCustomer(int booksLoaned)
+
+        {
+
+
+            using var context = new LibraryContext();
+            return (from c in context.Customer
+                    where c.AmountOfBooksLoaned == booksLoaned
+                    select c)
+                    .Include(c => c.BookOnLoan)
+                    .FirstOrDefault();
+        }
+
+
         public void AddCustomer(int customerNr)
         {
             using (var LibraryContext = new LibraryContext())

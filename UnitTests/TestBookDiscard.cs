@@ -47,7 +47,7 @@ namespace Unittests
         public void ShowDiscardBookList()
         {
             var bookManagerMock = new Mock<IBookManager>();
-            var shelfManagerMock = new Mock<IShelfManager>(,);
+            var shelfManagerMock = new Mock<IShelfManager>();
 
             bookManagerMock.Setup(m =>
                m.GetBookDiscardList(It.IsAny<bool>()))
