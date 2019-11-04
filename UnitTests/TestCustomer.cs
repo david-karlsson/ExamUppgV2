@@ -45,7 +45,7 @@ namespace Unittests
         private static bool AddCustomerNumberOne(Mock<ICustomerManager> customermanagerMock)
         {
             var book = new CustomerAPI(customermanagerMock.Object);
-            var successfull = customer.AddCustomer(1);
+            var successfull = customermanagerMock.AddCustomer(1);
             return successfull;
         }
 
@@ -66,7 +66,9 @@ namespace Unittests
                 .Returns(new Customer
                 {
                     CustomerNr = 8,
-                    Debts = new List<Customer.Debts>()
+                    Debts = 20,
+                    AmountOfBooksLoaned = 2
+
 
 
                 });
@@ -78,6 +80,32 @@ namespace Unittests
             customerManagerMock.Verify(m =>
                 m.RemoveCustomer(It.IsAny<int>()), Times.Once);
         }
+
+
+
+        public void CustomerLoanTest()
+        {
+            var customerManagerMock = new Mock<ICustomerManager>();
+
+
+            customerManagerMock.Setup(m =>
+               m.GetCustomerByNumber(It.IsAny<int>()))
+                .Returns(new Customer
+                {
+                    CustomerNr = 8,
+                    AmountOfBooksLoaned = 2
+
+
+                });
+
+
+            var customerAPI = new CustomerAPI(customerManagerMock.Object);
+            var successfull = customerAPI.BookStatusLoan(8,2,true);
+            Assert.AreEqual(BookLoanStatus.OK, successfull);
+            customerManagerMock.Verify(m =>
+                m.AddCustomer(It.IsAny<int>()), Times.Once);
+        }
+
 
     }
 }

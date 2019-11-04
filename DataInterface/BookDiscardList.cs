@@ -12,7 +12,7 @@ namespace DataInterface
 {
     public class BookDiscardList
     {
-        public List<BookDiscardList> BookDiscardList;
+        public List<BookDiscardList> BookList;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

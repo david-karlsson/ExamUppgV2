@@ -77,27 +77,52 @@ namespace ExamUppg
             return RemoveCustomerErrorCodes.OK;
         }
 
-        public BookLoanStatus AmountStatus(int customerNr, int customerLoans, bool bookOnLoan )
+        public BookLoanStatus BookStatusLoan(int customerNr, int customerLoans, bool bookOnLoan )
         {
-            var newCustomer = customerManager.GetCustomerByNumber(customerNr);
-            var newLoans = customerManager.GetBooksLoanedByCustomer(customerLoans);
+            var customer = customerManager.GetCustomerByNumber(customerNr);
+            var loans = customerManager.GetBooksLoanedByCustomer(customerLoans);
             var BookLoan = bookManager.GetBookOnLoan(bookOnLoan);
 
 
-            if (newLoans.BookOnLoan.Count > 5)
+            if (loans.BookOnLoan.Count > 5)
                 return BookLoanStatus.TooMany;
 
-            if (newCustomer.Book == newLoans.Book)
+            if (customer.Book == loans.Book)
                 return BookLoanStatus.ExtendPeriod;
 
             if (BookLoan.OnLoan == true)
                 return BookLoanStatus.BookIsOnLoan;
+
+
 
             else
                 return BookLoanStatus.OK;
 
 
         }
+
+        public BookReturnStatus BookStatusReturn(int customerNr, long bookISBN)
+        {
+            var customer = customerManager.GetCustomerByNumber(customerNr);
+            var book = bookManager.GetBookByNumber(bookISBN);
+
+
+
+            if (customer.Condition < 2)
+                return BookReturnStatus.BookDamagedByCustomer;
+
+
+            if (customer.LoanPeriod > 30)
+                return BookReturnStatus.OverDue;
+
+
+            else
+                return BookReturnStatus.OK;
+
+
+        }
+
+
 
     }
 

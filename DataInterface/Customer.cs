@@ -26,6 +26,10 @@ namespace DataInterface
 
         public int Debts { get; set; }
 
+        public int LoanPeriod { get; set; }
+
+        public int Condition { get; set; }
+
         public BookOnLoan BookOnLoan { get; set; }
         public ICollection<Book> Book { get; set; }
 

@@ -66,6 +66,8 @@ namespace Unittests
 
 
 
+
+
         public void MoveBook()
         {
             var bookManagerMock = new Mock<IBookManager>();
@@ -88,8 +90,6 @@ namespace Unittests
              Shelf = new Shelf()
 
          });
-
-
 
 
             var bookAPI = new BookAPI(bookManagerMock.Object, shelfManagerMock.Object);
