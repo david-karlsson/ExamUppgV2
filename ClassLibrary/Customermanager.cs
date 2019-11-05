@@ -43,6 +43,26 @@ namespace DataAccess
         }
 
 
+
+        public Customer ReminderList(int customerNR)
+
+        {
+
+            using var context = new LibraryContext();
+            return (from c in context.Customer
+                    where c.CustomerNr == customerNR
+                    select c)
+                    
+                    .Include(c => c.CustomerName)
+                    .Include(c => c.CustomerAdress)
+                    .Include(c => c.LoanPeriod)
+                    .Include(c => c.Condition)
+                    .Include(c => c.BookOnLoan)
+                    .FirstOrDefault();
+        }
+
+
+
         public void AddCustomer(int customerNr)
         {
             using (var LibraryContext = new LibraryContext())
@@ -50,7 +70,6 @@ namespace DataAccess
 
             var customer = new Customer();
                 customer.CustomerNr = customerNr;
-                customer.CustomerNr++;
                 LibraryContext.Customer.Add(customer);                      
                 LibraryContext.SaveChanges();
 
@@ -90,6 +109,9 @@ namespace DataAccess
             }
 
         }
+
+
+
 
     }
 }

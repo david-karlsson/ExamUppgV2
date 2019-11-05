@@ -11,13 +11,13 @@ using Moq;
 namespace DataInterface
 
 {
-    public class Customer
+       public class ReminderList
     {
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
-        public int CustomerID { get; set; }
+        
+        public int ReminderListID { get; set; }
         public int CustomerNr { get; set; }
 
         public string CustomerName { get; set; }
@@ -26,7 +26,6 @@ namespace DataInterface
 
         public string DateOfBirth { get; set; }
 
-        public int AmountOfBooksLoaned { get; set; }
 
         public int Debts { get; set; }
 
@@ -34,12 +33,12 @@ namespace DataInterface
 
         public int Condition { get; set; }
 
-        public int ReminderListID {get;set;}
-        public ReminderList ReminderList { get; set; }
+        public int AmountOfBooksLoaned { get; set; }
 
-        public BookOnLoan BookOnLoan { get; set; }
+
+        public ICollection<Customer> Customer { get; set; }
+
         public ICollection<Book> Book { get; set; }
-
     }
 
 }

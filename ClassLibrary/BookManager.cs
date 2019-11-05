@@ -49,8 +49,8 @@ namespace DataAccess
                     where b.OnLoan == onLoan
                     select b)
                     .Include(b => b.BookDiscard)
-                        .AlsoInclude(b => b.BookOnLoan)
-                    .ToList();
+                    .Include(b => b.BookOnLoan)
+                    .FirstOrDefault();
         }
 
 
@@ -63,8 +63,8 @@ namespace DataAccess
                     where b.ListDone == listDone
                     select b)
                     .Include(b => b.BookDiscard)
-                        .AlsoInclude(b => b.BookOnLoan)
-                    .ToList();
+                    .Include(b => b.BookOnLoan)
+                    .FirstOrDefault();
         }
 
 

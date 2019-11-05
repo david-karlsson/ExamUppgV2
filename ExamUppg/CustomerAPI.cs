@@ -116,6 +116,11 @@ namespace ExamUppg
                 return BookReturnStatus.OverDue;
 
 
+            if (customer.LoanPeriod > 60)
+
+                return BookReturnStatus.OverDueWithFee;
+
+
             else
                 return BookReturnStatus.OK;
 
@@ -124,8 +129,24 @@ namespace ExamUppg
 
 
 
+        public void ListReminder(int customerNr, long bookISBN)
+        
+        {
+
+            var customer = customerManager.GetCustomerByNumber(customerNr);
+            var book = bookManager.GetBookByNumber(bookISBN);
+
+            for(customer in customer.ReminderList)
+            {
+
+
+
+            }
+
+
+
+
+
+        }
     }
-
-
-}
 

@@ -8,7 +8,8 @@ namespace DataInterface
     {
         OK,
         BookDamagedByCustomer,
-        OverDue
+        OverDue,
+        OverDueWithFee
 
 
     }

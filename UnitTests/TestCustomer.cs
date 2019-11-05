@@ -107,5 +107,63 @@ namespace Unittests
         }
 
 
+
+        public void CustomerReturnTest()
+        {
+            var customerManagerMock = new Mock<ICustomerManager>();
+
+
+            customerManagerMock.Setup(m =>
+               m.GetCustomerByNumber(It.IsAny<int>()))
+                .Returns(new Customer
+                {
+                    AmountOfBooksLoaned = 2,
+                    LoanPeriod = 65
+
+
+                });
+            var fee = 50 * (customerManagerMock.LoanPeriod(-30).Count %30);
+            if (fee > 0) {
+            
+            //var overdueFee =
+            }
+
+            var customerAPI = new CustomerAPI(customerManagerMock.Object);
+            var successfull = customerAPI.BookStatusReturn(8,2);
+            Assert.AreEqual(BookReturnStatus.OK, successfull);
+
+            customerManagerMock.Verify(m =>
+                m.AddCustomer(It.IsAny<int>()), Times.Once);
+        }
+
+
+        public void ReminderListTest()
+        {
+            var customerManagerMock = new Mock<ICustomerManager>();
+
+
+            customerManagerMock.Setup(m =>
+               m.ReminderList(It.IsAny<int>()))
+                .Returns(new ReminderList
+                {
+
+                    CustomerName = "afk",
+                    CustomerAdress ="wayroad 666",
+                    AmountOfBooksLoaned = 2,
+                    LoanPeriod = 65
+
+
+                });
+         
+
+            var customerAPI = new CustomerAPI(customerManagerMock.Object);
+            var successfull = customerAPI.BookStatusReturn(8, 2);
+            Assert.AreEqual(BookReturnStatus.OK, successfull);
+
+            customerManagerMock.Verify(m =>
+                m.AddCustomer(It.IsAny<int>()), Times.Once);
+        }
+
+
     }
 }
