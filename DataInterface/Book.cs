@@ -43,7 +43,12 @@ namespace DataInterface
         public int BookDiscardListNr { get; set; }
         public bool ListDone { get; set; }
         public int AisleNr { get; set; }
-        public List<BookDiscardList> BookDiscardList { get; set; }
+
+        public int TimesLoaned { get; set; }
+        public PopularBooks PopularBooks { get; set; }
+
+        public int PopularBooksID { get; set; }
+    public List<BookDiscardList> BookDiscardList { get; set; }
     }
 
 }

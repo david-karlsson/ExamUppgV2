@@ -18,7 +18,7 @@ namespace DataInterface
 
         Customer GetBooksLoanedByCustomer(int AmountOfBooksLoaned);
 
-        Customer ReminderList(int CustomerNr);
+        ReminderList ReminderList(int CustomerNr);
 
         
         public void AddCustomer(int CustomerNr);

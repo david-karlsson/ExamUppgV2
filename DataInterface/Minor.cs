@@ -11,18 +11,18 @@ using Moq;
 namespace DataInterface
 
 {
-    public class Customer
+    public class Minor
     {
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int CustomerID { get; set; }
-        public int CustomerNr { get; set; }
+        public int MinorID { get; set; }
+        public int MinorNr { get; set; }
 
-        public string CustomerName { get; set; }
+        public string MinorName { get; set; }
 
-        public string CustomerAdress { get; set; }
+        public string MinorAdress { get; set; }
 
         public string DateOfBirth { get; set; }
 
@@ -34,7 +34,8 @@ namespace DataInterface
 
         public int Condition { get; set; }
 
-
+        public Customer Customer { get; set; }
+        public int CustomerID {get;set;}
         public PopularBooks PopularBooks { get; set; }
 
         public int PopularBooksID { get; set; }
