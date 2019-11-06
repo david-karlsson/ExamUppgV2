@@ -19,7 +19,7 @@ namespace DataInterface
         Book GetBookByNumber(long ISBN);
 
         Book GetBookOnLoan (bool OnLoan);
-
+        object GetBookByNumber(object bookISBN);
         Book GetBookDiscard(bool OnLoan);
 
         Book GetBookDiscardList(bool ListDone);

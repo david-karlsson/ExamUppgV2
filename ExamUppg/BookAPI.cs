@@ -20,6 +20,7 @@ namespace ExamUppg
             this.bookManager = bookManager;
             this.shelfManager = shelfManager;
 
+
         }
 
         public BookAPI(ICustomerManager customerManager)
@@ -98,7 +99,7 @@ namespace ExamUppg
         }
 
 
-        public PopularBookStatus PopularStatus(int bookISBN, int dateOfBirth, int customerNr)
+        public PopularBookStatus PopularStatus(long bookISBN, int dateOfBirth, int customerNr)
         {
 
             var newBook = bookManager.GetBookByNumber(bookISBN);
@@ -112,8 +113,78 @@ namespace ExamUppg
         }
 
 
+
+
+
+        public bool TryValidate(string isbn, long bookISBN)
+        {
+
+            isbn = bookManager.GetBookByNumber(bookISBN).ToString();
+
+
+            bool result = false;
+
+            if (!string.IsNullOrEmpty(isbn))
+            {
+                if (isbn.Contains("-")) isbn = isbn.Replace("-", "");
+
+                switch (isbn.Length)
+                {
+                    case 13: result = IsValidIsbn13(isbn,bookISBN);
+                        break;
+
+                }
+            }
+
+            return result;
+        }
+
+
+        private bool IsValidIsbn13(string isbn13, long bookISBN)
+        {
+
+            isbn13 = bookManager.GetBookByNumber(bookISBN).ToString();
+
+
+
+            bool result = false;
+
+            if (!string.IsNullOrEmpty(isbn13))
+            {
+                if (isbn13.Contains("-")) isbn13 = isbn13.Replace("-", "");
+
+                // If the length is not 13 or if it contains any non numeric chars, return false
+                long temp;
+                if (isbn13.Length != 13 || !long.TryParse(isbn13, out temp)) return false;
+
+                // Comment Source: Wikipedia
+                // The calculation of an ISBN-13 check digit begins with the first
+                // 12 digits of the thirteen-digit ISBN (thus excluding the check digit itself).
+                // Each digit, from left to right, is alternately multiplied by 1 or 3,
+                // then those products are summed modulo 10 to give a value ranging from 0 to 9.
+                // Subtracted from 10, that leaves a result from 1 to 10. A zero (0) replaces a
+                // ten (10), so, in all cases, a single check digit results.
+                int sum = 0;
+                for (int i = 0; i < 12; i++)
+                {
+                    sum += int.Parse(isbn13[i].ToString()) * (i % 2 == 1 ? 3 : 1);
+                }
+
+                int remainder = sum % 10;
+                int checkDigit = 10 - remainder;
+                if (checkDigit == 10) checkDigit = 0;
+
+                result = (checkDigit == int.Parse(isbn13[12].ToString()));
+            }
+
+            return result;
+        }
     }
 
 
 
 }
+
+
+
+

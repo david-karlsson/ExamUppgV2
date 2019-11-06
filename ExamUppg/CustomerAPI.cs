@@ -28,29 +28,24 @@ namespace ExamUppg
 
 
 
-             var customerNr = customerManager.GetCustomerByNumber(customerNumber);
+            var customerNr = customerManager.GetCustomerByNumber(customerNumber);
 
             DateTime customerDate;
 
+            string dateOfBirth = customerNr.DateOfBirth;
 
-            string dateOfBirth = customer.DateOfBirth;
             try
             {
+
                 customerDate = DateTime.Parse(dateOfBirth);
 
             }
             catch (FormatException)
             {
                 Console.WriteLine("Incorrext Dateformat", customerDate);
-            }
+                return AddCustomerErrorCodes.IncorrectDateFormat;
 
-            if (customerManager == false)
-
-
-                    return AddCustomerErrorCodes.IncorrectDateFormat;
-
-
-                else
+            }           
 
                     return AddCustomerErrorCodes.OK;
             }
