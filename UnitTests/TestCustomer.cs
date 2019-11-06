@@ -44,6 +44,8 @@ namespace Unittests
                     Times.Once());
         }
 
+
+
         private static bool AddCustomerNumberOne(Mock<ICustomerManager> customermanagerMock)
         {
             var book = new CustomerAPI(customermanagerMock.Object);
@@ -121,8 +123,8 @@ namespace Unittests
                 {
                     AmountOfBooksLoaned = 2,
                     LoanPeriod = 65,
-                    CustomerName = "afk",
-                    CustomerAdress = "street adress 123",
+                    CustomerName = "Mr.Person",
+                    CustomerAdress = "AdressStreet 123",
                     Condition = 3
 
 

@@ -23,6 +23,14 @@ namespace ExamUppg
 
         }
 
+
+
+        public BookAPI(IBookManager bookManager)
+        {
+            this.bookManager = bookManager;
+
+
+        }
         public BookAPI(ICustomerManager customerManager)
             {
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using DataInterface;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace ExamUppg
 {
@@ -24,15 +26,14 @@ namespace ExamUppg
         }
 
 
-        public AddCustomerErrorCodes AddCustomer(string dateOfBirth, int customerNumber) {
+        public AddCustomerErrorCodes AddCustomer(string dateOfBirth, int customerNumber)
+        {
 
 
 
             var customerNr = customerManager.GetCustomerByNumber(customerNumber);
 
             DateTime customerDate;
-
-            string dateOfBirth = customerNr.DateOfBirth;
 
             try
             {
@@ -45,10 +46,10 @@ namespace ExamUppg
                 Console.WriteLine("Incorrext Dateformat", customerDate);
                 return AddCustomerErrorCodes.IncorrectDateFormat;
 
-            }           
-
-                    return AddCustomerErrorCodes.OK;
             }
+
+            return AddCustomerErrorCodes.OK;
+        }
 
         //DateTime dateOnly = DateOfBirth->Date;
 
@@ -72,7 +73,7 @@ namespace ExamUppg
             return RemoveCustomerErrorCodes.OK;
         }
 
-        public BookLoanStatus BookStatusLoan(int customerNr, int customerLoans, bool bookOnLoan )
+        public BookLoanStatus BookStatusLoan(int customerNr, int customerLoans, bool bookOnLoan)
         {
             var customer = customerManager.GetCustomerByNumber(customerNr);
             var loans = customerManager.GetBooksLoanedByCustomer(customerLoans);
@@ -82,7 +83,7 @@ namespace ExamUppg
             if (loans.BookOnLoan.Count > 5)
                 return BookLoanStatus.TooMany;
 
-            if (customer.Book == loans.Book)
+            if (customer.Book == loans)
                 return BookLoanStatus.ExtendPeriod;
 
             if (BookLoan.OnLoan == true)
@@ -129,24 +130,30 @@ namespace ExamUppg
 
 
 
-        public void ListReminder(int customerNr, long bookISBN)
-        
+        public ReminderList ListReminder(int customerNr, long bookISBN)
+
         {
 
             var customer = customerManager.GetCustomerByNumber(customerNr);
             var book = bookManager.GetBookByNumber(bookISBN);
 
-            for(customer in customer.ReminderList)
-            {
-
-
-
-            }
 
 
 
 
 
         }
+
+
+        private static IEnumerable<ReminderList> ListReminder(int customerNr, ReminderList reminder, List<ReminderList> booksDue)
+        {
+            return booksDue.Where(t =>
+                                reminder.Book
+                                    .Any(r => r.BookID == t.CustomerNr)
+                                && t.Chairs.Count >= numberOfSeats);
+        }
+
+
     }
+}
 

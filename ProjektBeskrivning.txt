@@ -1,0 +1,16 @@
+
+
+
+- Projektbeskrivning
+
+
+Jag har valt att börja med att bygga funktioner för gångar, 
+hyllor och böcker, Utifrån att Gångarna inte är beroende av något, 
+hyllorna behöver en gång, och böckerna behöver en hylla.
+Kunderna är ju centrala för biblitektets verksamhet så 
+de kändes som ett naturligt nästa steg.
+Varje funktion har sina egna felkoder, för att
+förtydliga vid användandet av dem, varje felkod har(eller ska ha) ett test.
+Jag övervägde att dela upp BokAPI:et i flera delar, då många av funktionerna kretsade kring hanterandet av 
+böckerna, men beslutade mig för att det kunde räcka att lägga kund-funktionera som inkulderade 
+böckerna i kund-API:et och på så vis fördela funktionerna.

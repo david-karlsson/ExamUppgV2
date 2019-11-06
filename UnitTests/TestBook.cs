@@ -46,23 +46,11 @@ namespace Unittests
         private static bool AddBookNumberOne(Mock<IBookManager> bookmanagerMock)
         {
             var book = new BookAPI(bookmanagerMock.Object);
-            var successfull = book.AddBook(1);
+            var successfull = book.AddBook(9780132911221);
             return successfull;
         }
 
 
-
-        [TestMethod]
-        public void TestMethodBook()
-        {
-            var book = new Book();
-            book.Price = 200;//temp
-            book.ISBN = 9780132911221;
-            Assert.AreEqual(book.ISBN, 9780132911221);
-            Assert.AreEqual(200, book.Price);
-            Assert.AreEqual(1,((9*3)+7+(8*3)+0+(1*3)+3+(2*3)+9+(1*3)+1+(2*3)+2)%10);
-          
-        }
 
 
 
@@ -86,23 +74,21 @@ namespace Unittests
          .Returns(new Book
          {
 
-             ISBN = 9780132911221,
-             Shelf = new Shelf()
+             Shelf = new Shelf(),
+             ShelfNr = 3
 
          });
 
 
             var bookAPI = new BookAPI(bookManagerMock.Object, shelfManagerMock.Object);
-            var result = bookAPI.MoveBook(1, true);
+            var result = bookAPI.MoveBook(9780132911221, true);
             Assert.AreEqual(MoveBookErrorCodes.OK, result);
             bookManagerMock.Verify(m =>
                 m.MoveBook(2, 2), Times.Once());
 
 
 
-            Assert.AreEqual(shelfManagerMock.ShelfNr, bookManagerMock.ShelfNr);
-
-            bookManagerMock.ShelfNr = 3;
+          
         }
 
         public void RemoveBook()
@@ -122,7 +108,7 @@ namespace Unittests
 
 
             var bookAPI = new BookAPI(bookManagerMock.Object, shelfManagerMock.Object);
-            var successfull = bookAPI.RemoveBook(1);
+            var successfull = bookAPI.RemoveBook(9780132911221);
             Assert.AreEqual(RemoveBookErrorCodes.OK, successfull);
             bookManagerMock.Verify(m =>
                 m.RemoveBook(It.IsAny<long>()), Times.Once);
