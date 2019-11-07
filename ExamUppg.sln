@@ -13,6 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataInterface", "DataInterf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dokumentation", "Dokumentation", "{A89F9FEB-986D-475D-B340-31F381ED1958}"
 	ProjectSection(SolutionItems) = preProject
+		DatabasDiagram.dgml = DatabasDiagram.dgml
 		ProjektBeskrivning.txt = ProjektBeskrivning.txt
 	EndProjectSection
 EndProject

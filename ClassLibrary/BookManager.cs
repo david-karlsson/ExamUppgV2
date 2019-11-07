@@ -63,10 +63,17 @@ namespace DataAccess
                     where b.ListDone == listDone
                     select b)
                     .Include(b => b.BookDiscard)
-                    .Include(b => b.BookOnLoan)
+                    .ThenInclude(b => b.BookOnLoan)
+                    .Include(b => b.Condition)
+                    .Include(b => b.ShelfNr)
+                    .Include(b => b.AisleNr)
+
                     .FirstOrDefault();
         }
 
+
+
+        
 
         public Book BookOnLoan(long booknr)
         {

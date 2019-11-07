@@ -60,23 +60,29 @@ namespace ExamUppg
         }
 
 
-        public ChangeShelfErrorCodes ChangeShelf(int shelfNumber, int aisleNumber)
+        public ChangeShelfStatus ChangeShelf(int shelfNumber, int aisleNumber)
         {
-            var newShelf = shelfManager.GetShelfByNumber(shelfNumber);
-            var newAisle = aisleManager.GetAisleByNumber(aisleNumber);
+            var shelf = shelfManager.GetShelfByNumber(shelfNumber);
+            var aisle = aisleManager.GetAisleByNumber(aisleNumber);
 
 
-            if (newShelf.AisleNr == newAisle.AisleNr)
-           
-                return ChangeShelfErrorCodes.MoveShelf;
             
+            
+            if(shelf != null)
+           
+                return ChangeShelfStatus.ChangeShelfNumber;
 
-            else
-                return ChangeShelfErrorCodes.ChangeShelfNumber;
 
+
+            if (shelf.Aisle.AisleNr != aisleNumber)
+                shelfmanager.MoveShelf(shelf.ShelfNr, aisle.AisleNr);
+
+                return ChangeShelfStatus.MoveShelf;
 
 
         }
+
+
 
 
 

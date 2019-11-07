@@ -71,8 +71,8 @@ namespace Unittests
                });
 
             var shelfAPI = new ShelfAPI(aisleManagerMock.Object, shelfManagerMock.Object);
-            var result = shelfAPI.MoveShelf(1, 1);
-            Assert.AreEqual(ChangeShelfErrorCodes.MoveShelf, result);
+            var result = shelfAPI.ChangeShelf(1, 1);
+            Assert.AreEqual(ChangeShelfStatus.MoveShelf, result);
             shelfManagerMock.Verify(m =>
                 m.MoveShelf(2, 2), Times.Once());
 

@@ -4,12 +4,12 @@ using System.Text;
 
 namespace DataInterface
 {
-    public enum ChangeShelfStatus
+    public enum BookReturnListStatus
     {
-        MoveShelf,
-        ChangeShelfNumber
+        OK,
+        CustomerHasDebts,
+        BoooksOverDue
+
 
     }
 }
-
-

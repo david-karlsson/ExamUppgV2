@@ -25,6 +25,7 @@ namespace ExamUppg
 
 
 
+
         public BookAPI(IBookManager bookManager)
         {
             this.bookManager = bookManager;
@@ -165,13 +166,7 @@ namespace ExamUppg
                 long temp;
                 if (isbn13.Length != 13 || !long.TryParse(isbn13, out temp)) return false;
 
-                // Comment Source: Wikipedia
-                // The calculation of an ISBN-13 check digit begins with the first
-                // 12 digits of the thirteen-digit ISBN (thus excluding the check digit itself).
-                // Each digit, from left to right, is alternately multiplied by 1 or 3,
-                // then those products are summed modulo 10 to give a value ranging from 0 to 9.
-                // Subtracted from 10, that leaves a result from 1 to 10. A zero (0) replaces a
-                // ten (10), so, in all cases, a single check digit results.
+                
                 int sum = 0;
                 for (int i = 0; i < 12; i++)
                 {

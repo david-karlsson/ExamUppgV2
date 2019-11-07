@@ -102,6 +102,7 @@ namespace ExamUppg
             var customer = customerManager.GetCustomerByNumber(customerNr);
             var book = bookManager.GetBookByNumber(bookISBN);
 
+            var fee = 50 * (customer.LoanPeriod(-30).Count % 30);
 
 
             if (customer.Condition < 2)
@@ -112,13 +113,13 @@ namespace ExamUppg
                 return BookReturnStatus.OverDue;
 
 
-            if (customer.LoanPeriod > 60)
+            if (customer.LoanPeriod > 60) { 
+                customer.Debts = fee;
+            return BookReturnStatus.OverDueWithFee;
+            }
 
-                return BookReturnStatus.OverDueWithFee;
 
-
-            else
-                return BookReturnStatus.OK;
+            return BookReturnStatus.OK;
 
 
         }
@@ -130,14 +131,24 @@ namespace ExamUppg
 
 
 
-        public ReminderList ListReminder(int customerNr, long bookISBN)
+        public BookReturnListStatus ListReminder(int customerNr, long bookISBN)
 
         {
 
             var customer = customerManager.GetCustomerByNumber(customerNr);
             var book = bookManager.GetBookByNumber(bookISBN);
 
+            if (customer.Debts > 0)
 
+                return BookReturnListStatus.CustomerHasDebts;
+       
+
+            if (customer.LoanPeriod > 30)
+
+                return BookReturnListStatus.BoooksOverDue;
+
+
+            return BookReturnListStatus.OK;
 
 
 

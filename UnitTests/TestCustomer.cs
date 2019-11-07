@@ -116,7 +116,6 @@ namespace Unittests
         {
             var customerManagerMock = new Mock<ICustomerManager>();
 
-
             customerManagerMock.Setup(m =>
                m.GetCustomerByNumber(It.IsAny<int>()))
                 .Returns(new Customer
@@ -125,15 +124,11 @@ namespace Unittests
                     LoanPeriod = 65,
                     CustomerName = "Mr.Person",
                     CustomerAdress = "AdressStreet 123",
-                    Condition = 3
+                    Condition = 3,
 
 
-                });
-            var fee = 50 * (customerManagerMock.LoanPeriod(-30).Count %30);
-            if (fee > 0) {
-            
-            //var overdueFee =
-            }
+        });
+           
 
             var customerAPI = new CustomerAPI(customerManagerMock.Object);
             var successfull = customerAPI.BookStatusReturn(8, 9780132911221);
@@ -158,8 +153,9 @@ namespace Unittests
                m.ReminderList(It.IsAny<int>()))
                 .Returns(new ReminderList
                 {
-
+                    
                    Customer = new Customer()
+
 
                 
 
