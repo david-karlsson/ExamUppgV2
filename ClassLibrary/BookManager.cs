@@ -71,9 +71,26 @@ namespace DataAccess
                     .FirstOrDefault();
         }
 
+        public PopularBook GetPopularBook(int timesLoaned)
+        {
 
 
-        
+            using var context = new LibraryContext();
+            return (from b in context.PopularBook
+                    where b.TimesLoaned == timesLoaned
+
+                    select b)
+
+
+
+                    
+                    .FirstOrDefault();
+
+        }
+
+
+
+
 
         public Book BookOnLoan(long booknr)
         {

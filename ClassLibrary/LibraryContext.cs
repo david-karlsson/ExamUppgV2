@@ -27,13 +27,18 @@ namespace DataAccess
 
         public DbSet<Book> Book { get; set; }
 
+        public DbSet<PopularBook> PopularBook { get; set; }
+
+
         public DbSet<BookOnLoan> BookOnLoan { get; set; }
 
         public DbSet<BookDiscard> BookDiscard { get; set; }
-        public DbSet<BookDiscard> BookDiscardList { get; set; }
+        public DbSet<BookDiscardList> BookDiscardList { get; set; }
 
 
         public DbSet<Customer> Customer { get; set; }
+        public DbSet<Minor> Minor { get; set; }
+
 
         //public DbSet<StudentandCourseKeys> StudentandCourseKeys { get; set; }
 

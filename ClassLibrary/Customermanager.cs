@@ -44,13 +44,13 @@ namespace DataAccess
 
 
 
-        public Customer ReminderList(int customerNR)
+        public Customer ReminderList(int customerNr)
 
         {
 
             using var context = new LibraryContext();
             return (from c in context.Customer
-                    where c.CustomerNr == customerNR
+                    where c.CustomerNr == customerNr
                     select c)
                     
                     .Include(c => c.CustomerName)

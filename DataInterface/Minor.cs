@@ -33,7 +33,7 @@ namespace DataInterface
         public int LoanPeriod { get; set; }
 
         public int Condition { get; set; }
-
+        public bool Guardian { get; set; }
         public Customer Customer { get; set; }
         public int CustomerID {get;set;}
         public PopularBooks PopularBooks { get; set; }

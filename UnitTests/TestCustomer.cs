@@ -131,7 +131,7 @@ namespace Unittests
            
 
             var customerAPI = new CustomerAPI(customerManagerMock.Object);
-            var successfull = customerAPI.BookStatusReturn(8, 9780132911221);
+            var successfull = customerAPI.BookStatusReturnCheck(8, 9780132911221);
             Assert.AreEqual(BookReturnStatus.OK, successfull);
 
             customerManagerMock.Verify(m =>
@@ -154,7 +154,7 @@ namespace Unittests
                 .Returns(new ReminderList
                 {
                     
-                   Customer = new Customer()
+                   Customer = new List <Customer>()
 
 
                 
@@ -163,7 +163,38 @@ namespace Unittests
          
 
             var customerAPI = new CustomerAPI(customerManagerMock.Object);
-            var successfull = customerAPI.BookStatusReturn(1, 9780132911221);
+            var successfull = customerAPI.BookStatusReturnCheck(1, 9780132911221);
+            Assert.AreEqual(BookReturnStatus.OK, successfull);
+
+            customerManagerMock.Verify(m =>
+                m.AddCustomer(It.IsAny<int>()), Times.Once);
+        }
+
+
+
+
+
+        public void PopularBookTest()
+        {
+            var bookManagerMock = new Mock<IBookManager>();
+
+            var customerManagerMock = new Mock<ICustomerManager>();
+
+            customerManagerMock.Setup(m =>
+               m.PopularBookList(It.IsAny<int>()))
+                .Returns(new PopularBookList
+                {
+
+                    PopularBook = new List<PopularBook>()
+
+
+
+
+                });
+
+
+            var customerAPI = new CustomerAPI(customerManagerMock.Object);
+            var successfull = customerAPI.BookStatusReturnCheck(1, 9780132911221);
             Assert.AreEqual(BookReturnStatus.OK, successfull);
 
             customerManagerMock.Verify(m =>
@@ -178,12 +209,13 @@ namespace Unittests
             var customerManagerMock = new Mock<ICustomerManager>();
 
 
+
             customerManagerMock.Setup(m =>
                m.PartyInvitation(It.IsAny<int>()))
                 .Returns(new PartyInvitation
                 {
 
-                    Minor = new Minor()
+                    Minor = new List<Minor>()
 
 
 
@@ -191,7 +223,7 @@ namespace Unittests
 
 
             var customerAPI = new CustomerAPI(customerManagerMock.Object);
-            var successfull = customerAPI.BookStatusReturn(1, 9780132911221);
+            var successfull = customerAPI.BookStatusReturnCheck(1, 9780132911221);
             Assert.AreEqual(BookReturnStatus.OK, successfull);
 
             customerManagerMock.Verify(m =>

@@ -108,18 +108,7 @@ namespace ExamUppg
         }
 
 
-        public PopularBookStatus PopularStatus(long bookISBN, int dateOfBirth, int customerNr)
-        {
-
-            var newBook = bookManager.GetBookByNumber(bookISBN);
-            var customer = customerManager.GetCustomerByNumber(customerNr);
-
-          
      
-
-
-
-        }
 
 
 

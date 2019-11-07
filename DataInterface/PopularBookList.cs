@@ -10,8 +10,10 @@ using Moq;
 
 namespace DataInterface
 {
-    public class PopularBooks
+    public class PopularBookList
     {
+
+
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,9 +26,7 @@ namespace DataInterface
         public int DateOfBirth { get; set; }
        public ICollection<Book>Book { get; set; }
         public ICollection<Customer>Customer { get; set; }
-
-
-
-
+        public int TimesLoaned { get; set; }
+        public PopularBook PopularBook { get; set; }
     }
 }

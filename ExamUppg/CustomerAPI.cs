@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataInterface;
-using DocumentFormat.OpenXml.Drawing;
 
 namespace ExamUppg
 {
@@ -97,7 +96,7 @@ namespace ExamUppg
 
         }
 
-        public BookReturnStatus BookStatusReturn(int customerNr, long bookISBN)
+        public BookReturnStatus BookStatusReturnCheck(int customerNr, long bookISBN)
         {
             var customer = customerManager.GetCustomerByNumber(customerNr);
             var book = bookManager.GetBookByNumber(bookISBN);
@@ -161,7 +160,57 @@ namespace ExamUppg
             return booksDue.Where(t =>
                                 reminder.Book
                                     .Any(r => r.BookID == t.CustomerNr)
-                                && t.Chairs.Count >= numberOfSeats);
+                                );
+        }
+
+
+        public PopularBookStatus PopularStatus(long bookISBN, int dateOfBirth, int customerNr, int timesLoaned)
+        {
+
+            var popularBook = bookManager.GetPopularBook(timesLoaned);
+            var customer = customerManager.GetCustomerByNumber(customerNr);
+            var book = bookManager.GetBookByNumber(bookISBN);
+            var dateInt = customer.DateOfBirth.Parse;
+
+
+
+            if (customer.timesLoaned > popularBook.BookOnLoan)
+
+
+                if (dateInt > 2010)
+                    return PopularBookStatus.Ages0o9;
+
+
+                if (dateInt > 2000 && dateInt < 2010)
+                    return PopularBookStatus.Ages10To19;
+
+                if (dateInt > 1990 && dateInt < 2000)
+                    return PopularBookStatus.Ages20To29;
+
+
+                if (dateInt > 1990 && dateInt < 2000)
+                    return PopularBookStatus.Ages20To29;
+
+
+                if (dateInt > 1980 && dateInt < 1990)
+                    return PopularBookStatus.Ages30To39;
+                 
+                if (dateInt > 1970 && dateInt < 1980)
+                    return PopularBookStatus.Ages40To49;
+
+                if (dateInt > 1960 && dateInt < 1970)
+                    return PopularBookStatus.Ages50To59;
+
+                 if (dateInt > 1950 && dateInt < 1960)
+                     return PopularBookStatus.Ages60To69;
+                 
+                 if (dateInt > 1940 && dateInt < 1950)
+                     return PopularBookStatus.Ages70To79;
+
+                 if (dateInt > 1930 && dateInt < 1940)
+                     return PopularBookStatus.Ages80To89;
+
+
         }
 
 

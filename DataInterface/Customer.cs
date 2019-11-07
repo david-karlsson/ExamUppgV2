@@ -44,6 +44,8 @@ namespace DataInterface
         public BookOnLoan BookOnLoan { get; set; }
         public ICollection<Book> Book { get; set; }
 
+        public ICollection<Minor> Minor { get; set; }
+
     }
 
 }
