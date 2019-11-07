@@ -24,9 +24,7 @@ namespace DataInterface
         public int AmountOnLoan { get; set; }
 
         public int DateOfBirth { get; set; }
-       public ICollection<Book>Book { get; set; }
-        public ICollection<Customer>Customer { get; set; }
+       public ICollection<PopularBook> PopularBook { get; set; }
         public int TimesLoaned { get; set; }
-        public PopularBook PopularBook { get; set; }
     }
 }

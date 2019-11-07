@@ -45,10 +45,10 @@ namespace DataInterface
         public int AisleNr { get; set; }
 
         public int TimesLoaned { get; set; }
-        public PopularBooks PopularBooks { get; set; }
+        public PopularBook PopularBook { get; set; }
 
         public int PopularBooksID { get; set; }
-    public List<BookDiscardList> BookDiscardList { get; set; }
+        public List<BookDiscardList> BookDiscardList { get; set; }
     }
 
 }
