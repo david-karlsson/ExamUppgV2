@@ -14,8 +14,7 @@ namespace DataInterface
         Ages50To59,
         Ages60To69,
         Ages70To79,
-        Ages80To89
-
-
+        Ages80To89,
+        Ages90AndAbove
     }
 }

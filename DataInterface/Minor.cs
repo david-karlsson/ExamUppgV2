@@ -36,7 +36,7 @@ namespace DataInterface
         public bool Guardian { get; set; }
         public Customer Customer { get; set; }
         public int CustomerID {get;set;}
-        public PopularBooks PopularBooks { get; set; }
+        public PopularBook PopularBook { get; set; }
 
         public int PopularBooksID { get; set; }
         public int ReminderListID {get;set;}

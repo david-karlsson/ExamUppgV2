@@ -18,7 +18,7 @@ namespace DataInterface
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int BookOnLoanID { get; set; }
+        public int PopularBookListID { get; set; }
 
         public int ISBN { get; set; }
         public int AmountOnLoan { get; set; }

@@ -48,8 +48,8 @@ namespace Unittests
 
         private static bool AddCustomerNumberOne(Mock<ICustomerManager> customermanagerMock)
         {
-            var book = new CustomerAPI(customermanagerMock.Object);
-            var successfull = customermanagerMock.AddCustomer(1);
+            var customer = new CustomerAPI(customermanagerMock.Object);
+            var successfull = customer.AddCustomer("2009-01-23",1);
             return successfull;
         }
 
@@ -181,7 +181,7 @@ namespace Unittests
             var customerManagerMock = new Mock<ICustomerManager>();
 
             customerManagerMock.Setup(m =>
-               m.PopularBookList(It.IsAny<int>()))
+               m.GetPopularBookList(It.IsAny<int>()))
                 .Returns(new PopularBookList
                 {
 
@@ -194,7 +194,7 @@ namespace Unittests
 
 
             var customerAPI = new CustomerAPI(customerManagerMock.Object);
-            var successfull = customerAPI.BookStatusReturnCheck(1, 9780132911221);
+            var successfull = customerAPI.PopularStatus(1, 23);
             Assert.AreEqual(BookReturnStatus.OK, successfull);
 
             customerManagerMock.Verify(m =>
@@ -231,6 +231,31 @@ namespace Unittests
         }
 
 
+        public void BirthdayListTest()
+        {
+            var customerManagerMock = new Mock<ICustomerManager>();
+
+
+
+            customerManagerMock.Setup(m =>
+               m.BirthdayList(It.IsAny<int>()))
+                .Returns(new PartyInvitation
+                {
+
+                    Customer = new List<Customer>()
+
+
+
+                });
+
+
+            var customerAPI = new CustomerAPI(customerManagerMock.Object);
+            var successfull = customerAPI.BookStatusReturnCheck(1, 9780132911221);
+            Assert.AreEqual(BirthdayStatus.ItsYourBirthday, successfull);
+
+            customerManagerMock.Verify(m =>
+                m.AddCustomer(It.IsAny<int>()), Times.Once);
+        }
 
 
     }

@@ -32,6 +32,8 @@ namespace ExamUppg
 
             var customerNr = customerManager.GetCustomerByNumber(customerNumber);
 
+            dateOfBirth = customerNr.DateOfBirth;
+
             DateTime customerDate;
 
             try
@@ -42,7 +44,7 @@ namespace ExamUppg
             }
             catch (FormatException)
             {
-                Console.WriteLine("Incorrext Dateformat", customerDate);
+                Console.WriteLine("Incorrext Dateformat", customerNr.DateOfBirth);
                 return AddCustomerErrorCodes.IncorrectDateFormat;
 
             }
@@ -98,6 +100,8 @@ namespace ExamUppg
 
         public BookReturnStatus BookStatusReturnCheck(int customerNr, long bookISBN)
         {
+
+            var customerMock = customerManager;
             var customer = customerManager.GetCustomerByNumber(customerNr);
             var book = bookManager.GetBookByNumber(bookISBN);
 
@@ -164,19 +168,18 @@ namespace ExamUppg
         }
 
 
-        public PopularBookStatus PopularStatus(long bookISBN, int dateOfBirth, int customerNr, int timesLoaned)
+        public PopularBookStatus PopularStatus(int customerNr, int timesLoaned)
         {
 
             var popularBook = bookManager.GetPopularBook(timesLoaned);
             var customer = customerManager.GetCustomerByNumber(customerNr);
             var book = bookManager.GetBookByNumber(bookISBN);
-            var dateInt = customer.DateOfBirth.Parse;
+            var dateInt = customer.YearOfBirth;
 
 
+            if (customer.TimesLoaned > popularBook.BookOnLoan)
 
-            if (customer.timesLoaned > popularBook.BookOnLoan)
-
-
+                
                 if (dateInt > 2010)
                     return PopularBookStatus.Ages0o9;
 
@@ -190,7 +193,6 @@ namespace ExamUppg
 
                 if (dateInt > 1990 && dateInt < 2000)
                     return PopularBookStatus.Ages20To29;
-
 
                 if (dateInt > 1980 && dateInt < 1990)
                     return PopularBookStatus.Ages30To39;
@@ -211,8 +213,25 @@ namespace ExamUppg
                      return PopularBookStatus.Ages80To89;
 
 
-        }
+            return PopularBookStatus.Ages90AndAbove;
 
+
+
+        }
+        public BirthdayStatus BirthdayTest(int customerNr)
+        {
+            var customer = customerManager.GetCustomerByNumber(customerNr);
+            var parseBirthDayDay = Convert.ToInt32(customer.DateOfBirth);
+            var parseThisDay = Convert.ToInt32(DateTime.Today);
+
+
+            if (parseThisDay == parseBirthDayDay)
+                return BirthdayStatus.ItsYourBirthday;
+
+            return BirthdayStatus.ItsNotYourBirthday;
+
+
+        }
 
     }
 }

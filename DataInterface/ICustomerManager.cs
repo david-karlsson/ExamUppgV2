@@ -16,6 +16,11 @@ namespace DataInterface
 
        Customer GetCustomerByNumber(int CustomerNr);
 
+        PopularBookList GetPopularBookList(int ISBN);
+
+        BirthdayList GetBirthday(int DateOfBirth);
+
+
         Book GetBooksLoanedByCustomer(int AmountOfBooksLoaned);
 
         ReminderList ReminderList(int CustomerNr);

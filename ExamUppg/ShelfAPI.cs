@@ -64,18 +64,20 @@ namespace ExamUppg
         {
             var shelf = shelfManager.GetShelfByNumber(shelfNumber);
             var aisle = aisleManager.GetAisleByNumber(aisleNumber);
+            var shelfManagerMock = shelfManager;
 
 
-            
-            
-            if(shelf != null)
+
+
+
+            if (shelf != null)
            
                 return ChangeShelfStatus.ChangeShelfNumber;
 
 
 
             if (shelf.Aisle.AisleNr != aisleNumber)
-                shelfmanager.MoveShelf(shelf.ShelfNr, aisle.AisleNr);
+                shelfManagerMock.MoveShelf(shelf.ShelfNr, aisle.AisleNr);
 
                 return ChangeShelfStatus.MoveShelf;
 

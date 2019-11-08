@@ -5,7 +5,7 @@ using System.Linq;
 using Moq;
 using DataInterface;
 using ExamUppg;
-
+using System.Collections.Generic;
 
 namespace Unittests
 {
@@ -62,19 +62,7 @@ namespace Unittests
 
 
 
-        [TestMethod]
-        public void TestMethodBookOnLoan()
-        {
-            RemoveBookErrorCodes BooksIsOnLoan(int bookISBN, int bookOnLoanISBN)
-            {
-
-                return RemoveBookErrorCodes.OK;
-
-            }  
-
-
-
-        }
+    
 
 
 

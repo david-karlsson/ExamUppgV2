@@ -64,7 +64,6 @@ namespace ExamUppg
 
             if (newBook.Condition < 2)
                 return RemoveBookErrorCodes.PoorCondition;
-                bookManager.RemoveBook(newBook.BookID);                
 
 
             return RemoveBookErrorCodes.OK;

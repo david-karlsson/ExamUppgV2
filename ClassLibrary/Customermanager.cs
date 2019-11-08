@@ -44,6 +44,22 @@ namespace DataAccess
 
 
 
+        public Customer GetPopularBooksList(int ISBN)
+
+        {
+
+
+            using var context = new LibraryContext();
+            return (from c in context.Customer
+                    where c.AmountOfBooksLoaned == booksLoaned
+                    select c)
+                    .Include(c => c.BookOnLoan)
+                    .FirstOrDefault();
+        }
+
+
+
+
         public Customer ReminderList(int customerNr)
 
         {

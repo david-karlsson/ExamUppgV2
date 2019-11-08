@@ -11,7 +11,7 @@ using Moq;
 namespace DataInterface
 
 {
-    public class Customer
+    public class BirthdayList
     {
 
         [Key]
@@ -36,10 +36,8 @@ namespace DataInterface
 
         public int Condition { get; set; }
 
-        public int BirhdayListID { get; set; }
-        
-        public BirthdayList BirthdayList { get; set; }
-        public PopularBook PopularBook{ get; set; }
+
+        public PopularBook PopularBook { get; set; }
 
         public int PopularBooksID { get; set; }
         public int ReminderListID {get;set;}
@@ -48,8 +46,7 @@ namespace DataInterface
         public BookOnLoan BookOnLoan { get; set; }
         public ICollection<Book> Book { get; set; }
 
-        public ICollection<Minor> Minor { get; set; }
-        public int TimesLoaned { get; set; }
+        public ICollection<Customer>Customer{ get; set; }
     }
 
 }
